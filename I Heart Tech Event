@@ -1,0 +1,172 @@
+I Heart Tech Event presentation
+
+
+Lights, Camera, Data: Analyzing and Visualizing Movie Data
+
+In this interactive presentation, we’ll dive into IMDb movie data to uncover intriguing insights. Together, we’ll analyze the dataset and use our findings to build a dynamic dashboard. Together we will go through data exploration, visualization techniques, and dashboard creation. Don’t miss this chance to see how data can bring movie trends and patterns to life!
+
+
+
+
+Sample SQL
+
+
+select movie_name from i_heart_tech.imdb_movies where movie_name ilike '%mean girls%' -- favorite movie
+
+select movie_name from i_heart_tech.imdb_movies where starring ilike '%kevin bacon%' -- all movies with Kevin Bacon <favorite actor>
+
+select max(score) from i_heart_tech.imdb_movies --highest rating
+
+select movie_name, score from i_heart_tech.imdb_movies order by score desc -- movie scores sorted highest to lowest
+
+select * from i_heart_tech.imdb_movies where score = (select max(score) from i_heart_tech.imdb_movies) --film with the highest rating
+
+select count(*) from i_heart_tech.imdb_movies where genre ilike '%horror%' --all horror movies
+
+select avg(score) from i_heart_tech.imdb_movies where genre ilike '%horror%' --average score for all horror movies
+
+select avg(revenue) from i_heart_tech.imdb_movies -- avg revenue
+
+select * from i_heart_tech.imdb_movies where revenue = (select max(revenue) from i_heart_tech.imdb_movies) --movie with highest revenue
+
+
+select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.imdb_movies order by diff desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+update i_heart_tech.imdb_movies set genre = regexp_replace(genre, ',.', ', ')
+select count(*) from i_heart_tech.imdb_movies
+
+delete from i_heart_tech.imdb_movies where id in
+
+
+   (select id from
+        (select id, movie_name
+                    , release_date
+                    , score
+                    , genre
+                    , overview
+                    , starring
+                    , orig_title
+                    , status
+                    , orig_lang
+                    , budget
+                    , revenue
+                    , country
+                    , row_number() over (partition by movie_name
+        , release_date
+        , score
+        , genre
+        , overview
+        , starring
+        , orig_title
+        , status
+        , orig_lang
+        , country order by revenue desc) as rn
+               from i_heart_tech.imdb_movies)
+where rn >1)
+
+alter table i_heart_tech.imdb_movies_old
+    rename to imdb_movies_old;
+
+
+create table i_heart_tech.imdb_movies
+(
+    id bigint IDENTITY(1,1),
+    movie_name   varchar(256),
+    release_date varchar(256),
+    score        double precision,
+    genre        varchar(256),
+    overview     varchar(256),
+    starring     varchar(256),
+    orig_title   varchar(256),
+    status       varchar(256),
+    orig_lang    varchar(256),
+    budget       double precision,
+    revenue      double precision,
+    country      varchar(256)
+);
+
+alter table i_heart_tech.imdb_movies_old
+    owner to mpetersen;
+
+insert into i_heart_tech.imdb_movies_old (movie_name, release_date, score, genre, overview, starring, orig_title, status, orig_lang, budget, revenue, country) (select * from i_heart_tech.imdb_movies_old)
+
+
+ALTER TABLE i_heart_tech.imdb_movies_old ALTER DISTSTYLE KEY DISTKEY movie_name
+select * from i_heart_tech.imdb_movies_old where movie_name ilike '%sex%'
+    drop column id;
+
+select count(*) from i_heart_tech.imdb_movies
+
+
+
+
+
+
+select movie_name from i_heart_tech.imdb_movies where movie_name ilike '%mean girls%' -- favorite movie
+
+select movie_name from i_heart_tech.imdb_movies where starring ilike '%kevin bacon%' -- all movies with Kevin Bacon
+
+select max(score) from i_heart_tech.imdb_movies --highest rating
+
+select movie_name, score from i_heart_tech.imdb_movies order by score desc -- movie scores sorted highest to lowest
+
+select * from i_heart_tech.imdb_movies where score = (select max(score) from i_heart_tech.imdb_movies) --film with the highest rating
+
+select count(*) from i_heart_tech.imdb_movies where genre ilike '%horror%' --all horror movies
+
+select avg(score) from i_heart_tech.imdb_movies where genre ilike '%horror%' --average score for all horror movies
+
+select avg(revenue) from i_heart_tech.imdb_movies -- avg revenue
+
+select * from i_heart_tech.imdb_movies where revenue = (select max(revenue) from i_heart_tech.imdb_movies) --movie with highest revenue
+
+
+select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.imdb_movies order by diff desc
+
+
+
+
+
+
+
+select * from i_heart_tech.imdb_movies where date_part(year, release_date::date) ='2069'
+
+alter table i_heart_tech.imdb_movies ALTER COLUMN release_date TYPE date
+
+create table i_heart_tech.imdb_movies (
+  movie_name varchar(256),
+  release_date date,
+  score integer,
+  genre varchar(256),
+  overview varchar(256),
+  starring varchar(256),
+  orig_title varchar(256),
+  status varchar(256),
+  orig_lang varchar(256),
+  budget integer,
+  revenue double precision,
+  country varchar(256)
+);
+
