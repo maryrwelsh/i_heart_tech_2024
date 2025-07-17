@@ -7,58 +7,11 @@ In this interactive presentation, we’ll dive into IMDb movie data to uncover i
 
 
 
-
-Sample SQL
-
-
-select movie_name from i_heart_tech.imdb_movies where movie_name ilike '%mean girls%' -- favorite movie
-
-select movie_name from i_heart_tech.imdb_movies where starring ilike '%kevin bacon%' -- all movies with Kevin Bacon <favorite actor>
-
-select max(score) from i_heart_tech.imdb_movies --highest rating
-
-select movie_name, score from i_heart_tech.imdb_movies order by score desc -- movie scores sorted highest to lowest
-
-select * from i_heart_tech.imdb_movies where score = (select max(score) from i_heart_tech.imdb_movies) --film with the highest rating
-
-select count(*) from i_heart_tech.imdb_movies where genre ilike '%horror%' --all horror movies
-
-select avg(score) from i_heart_tech.imdb_movies where genre ilike '%horror%' --average score for all horror movies
-
-select avg(revenue) from i_heart_tech.imdb_movies -- avg revenue
-
-select * from i_heart_tech.imdb_movies where revenue = (select max(revenue) from i_heart_tech.imdb_movies) --movie with highest revenue
-
-
-select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.imdb_movies order by diff desc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--DATA CLEANSING
 update i_heart_tech.imdb_movies set genre = regexp_replace(genre, ',.', ', ')
 select count(*) from i_heart_tech.imdb_movies
 
 delete from i_heart_tech.imdb_movies where id in
-
 
    (select id from
         (select id, movie_name
@@ -112,7 +65,26 @@ alter table i_heart_tech.imdb_movies_old
 
 insert into i_heart_tech.imdb_movies_old (movie_name, release_date, score, genre, overview, starring, orig_title, status, orig_lang, budget, revenue, country) (select * from i_heart_tech.imdb_movies_old)
 
+select * from i_heart_tech.imdb_movies where date_part(year, release_date::date) ='2069'
 
+alter table i_heart_tech.imdb_movies ALTER COLUMN release_date TYPE date
+
+create table i_heart_tech.imdb_movies (
+  movie_name varchar(256),
+  release_date date,
+  score integer,
+  genre varchar(256),
+  overview varchar(256),
+  starring varchar(256),
+  orig_title varchar(256),
+  status varchar(256),
+  orig_lang varchar(256),
+  budget integer,
+  revenue double precision,
+  country varchar(256)
+);
+
+--Remove anything with explicit or offensive keywords (repeated using multiple keywords)
 ALTER TABLE i_heart_tech.imdb_movies_old ALTER DISTSTYLE KEY DISTKEY movie_name
 select * from i_heart_tech.imdb_movies_old where movie_name ilike '%sex%'
     drop column id;
@@ -123,6 +95,7 @@ select count(*) from i_heart_tech.imdb_movies
 
 
 
+--Sample SQL queries
 
 select movie_name from i_heart_tech.imdb_movies where movie_name ilike '%mean girls%' -- favorite movie
 
@@ -151,22 +124,5 @@ select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.i
 
 
 
-select * from i_heart_tech.imdb_movies where date_part(year, release_date::date) ='2069'
 
-alter table i_heart_tech.imdb_movies ALTER COLUMN release_date TYPE date
-
-create table i_heart_tech.imdb_movies (
-  movie_name varchar(256),
-  release_date date,
-  score integer,
-  genre varchar(256),
-  overview varchar(256),
-  starring varchar(256),
-  orig_title varchar(256),
-  status varchar(256),
-  orig_lang varchar(256),
-  budget integer,
-  revenue double precision,
-  country varchar(256)
-);
 
