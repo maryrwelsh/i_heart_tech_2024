@@ -1,6 +1,64 @@
-# i_heart_tech_2024
-An introduction to data analysis for high schoolers presented at the annual I Heart Tech event at Adobe on October 29, 2024
+# I Heart Tech 2024: Lights, Camera, Data!
 
-Lights, Camera, Data: Analyzing and Visualizing Movie Data
+This repository contains the materials for the "Lights, Camera, Data: Analyzing and Visualizing Movie Data" presentation, delivered at the annual I Heart Tech event at Adobe on October 29, 2024. This session was designed to introduce high school students to the exciting world of data analysis and visualization using real-world IMDb movie data.
 
-In this interactive presentation, we’ll dive into IMDb movie data to uncover intriguing insights. Together, we’ll analyze the dataset and use our findings to build a dynamic dashboard. Together we will go through data exploration, visualization techniques, and dashboard creation. Don’t miss this chance to see how data can bring movie trends and patterns to life!
+## Table of Contents
+
+* [Project Overview](#project-overview)
+* [Presentation Focus](#presentation-focus)
+* [Contents of this Repository](#contents-of-this-repository)
+* [Purpose](#purpose)
+* [Getting Started](#getting-started)
+* [Connect with Me](#connect-with-me)
+
+## Project Overview
+
+The "I Heart Tech" event aims to inspire and educate the next generation of technologists. My contribution, "Lights, Camera, Data!", provided a hands-on introduction to data analysis. Participants learned how to explore datasets, create meaningful visualizations, and build interactive dashboards to uncover insights from IMDb movie data.
+
+## Presentation Focus
+
+The presentation covered fundamental concepts in data analysis, including:
+
+* **Data Exploration:** Understanding the structure and content of a dataset.
+* **Data Visualization:** Techniques for representing data visually to identify patterns and trends.
+* **Dashboard Creation:** Building interactive interfaces to present multiple visualizations and allow for dynamic exploration.
+* **Insights Generation:** Drawing conclusions and telling stories from data.
+
+## Contents of this Repository
+
+This repository includes all the resources used and referenced during the "Lights, Camera, Data!" session:
+
+* **`I Heart Tech IMDb Data Analysis Resources.docx`**: A document listing additional resources, tools, or links for further learning in data analysis.
+* **`IMBD.csv`**: The raw IMDb movie dataset in CSV (Comma Separated Values) format.
+* **`IMBD.xlsx`**: The raw IMDb movie dataset in Excel format.
+* **`IMDB.twb`**: A Tableau Workbook file containing the visualizations and dashboards created during or for the presentation. (Requires Tableau Desktop to open and view.)
+
+## Purpose
+
+The primary purposes of this repository are:
+
+* **Educational Resource:** To provide students and educators with access to the materials used in the "Lights, Camera, Data!" session for review and continued learning.
+* **Demonstration:** To showcase a practical application of data analysis and visualization principles.
+* **Inspiration:** To encourage high schoolers to explore careers in data science and technology.
+
+## Getting Started
+
+To explore the data and visualizations:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/maryrwelsh/i_heart_tech_2024.git](https://github.com/maryrwelsh/i_heart_tech_2024.git)
+    ```
+2.  **Access the Data:**
+    * Open `IMBD.csv` or `IMBD.xlsx` in a spreadsheet program (like Microsoft Excel, Google Sheets, or LibreOffice Calc) to view the raw movie data.
+3.  **Explore Visualizations:**
+    * If you have Tableau Desktop installed, open `IMDB.twb` to interact with the pre-built dashboards and visualizations.
+4.  **Review Resources:**
+    * Open `I Heart Tech IMDb Data Analysis Resources.docx` for additional learning materials.
+
+## Connect with Me
+
+* **GitHub:** [maryrwelsh](https://www.google.com/search?q=https://github.com/maryrwelsh)
+* **LinkedIn:** [Mary Welsh](https://www.linkedin.com/in/mary-w-a9878363/)
+
+Feel free to reach out if you have any questions about the presentation or data analysis!
