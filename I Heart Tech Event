@@ -1,18 +1,22 @@
 I Heart Tech Event presentation
 
-
-Lights, Camera, Data: Analyzing and Visualizing Movie Data
-
+Presentation description:
+Lights, Camera, Data!: Analyzing and Visualizing Movie Data
 In this interactive presentation, we’ll dive into IMDb movie data to uncover intriguing insights. Together, we’ll analyze the dataset and use our findings to build a dynamic dashboard. Together we will go through data exploration, visualization techniques, and dashboard creation. Don’t miss this chance to see how data can bring movie trends and patterns to life!
 
 
+Upon importing the data from the .csv file into our desired database (into object named i_heart_tech.imdb_movies), I did some manual data cleansing (already done to save time)
 
---DATA CLEANSING
+
+--DATA CLEANSING SQL
+--clean the genre text
 update i_heart_tech.imdb_movies set genre = regexp_replace(genre, ',.', ', ')
+
+--check count
 select count(*) from i_heart_tech.imdb_movies
 
+--remove duplicates
 delete from i_heart_tech.imdb_movies where id in
-
    (select id from
         (select id, movie_name
                     , release_date
@@ -39,9 +43,9 @@ delete from i_heart_tech.imdb_movies where id in
                from i_heart_tech.imdb_movies)
 where rn >1)
 
+--update table structure
 alter table i_heart_tech.imdb_movies_old
     rename to imdb_movies_old;
-
 
 create table i_heart_tech.imdb_movies
 (
@@ -60,11 +64,10 @@ create table i_heart_tech.imdb_movies
     country      varchar(256)
 );
 
-alter table i_heart_tech.imdb_movies_old
-    owner to mpetersen;
-
 insert into i_heart_tech.imdb_movies_old (movie_name, release_date, score, genre, overview, starring, orig_title, status, orig_lang, budget, revenue, country) (select * from i_heart_tech.imdb_movies_old)
 
+
+--fix incorrect dates
 select * from i_heart_tech.imdb_movies where date_part(year, release_date::date) ='2069'
 
 alter table i_heart_tech.imdb_movies ALTER COLUMN release_date TYPE date
@@ -87,15 +90,13 @@ create table i_heart_tech.imdb_movies (
 --Remove anything with explicit or offensive keywords (repeated using multiple keywords)
 ALTER TABLE i_heart_tech.imdb_movies_old ALTER DISTSTYLE KEY DISTKEY movie_name
 select * from i_heart_tech.imdb_movies_old where movie_name ilike '%sex%'
-    drop column id;
-
-select count(*) from i_heart_tech.imdb_movies
 
 
 
 
 
---Sample SQL queries
+
+--Sample SQL queries for data analysis
 
 select movie_name from i_heart_tech.imdb_movies where movie_name ilike '%mean girls%' -- favorite movie
 
@@ -115,8 +116,7 @@ select avg(revenue) from i_heart_tech.imdb_movies -- avg revenue
 
 select * from i_heart_tech.imdb_movies where revenue = (select max(revenue) from i_heart_tech.imdb_movies) --movie with highest revenue
 
-
-select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.imdb_movies order by diff desc
+select movie_name, budget, revenue, budget - revenue as diff from i_heart_tech.imdb_movies order by diff desc --biggest difference in budget vs revenue
 
 
 
