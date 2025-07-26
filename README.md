@@ -28,10 +28,10 @@ The presentation covered fundamental concepts in data analysis, including:
 
 This repository includes all the resources used and referenced during the "Lights, Camera, Data!" session:
 
-* **`I Heart Tech IMDb Data Analysis Resources.docx`**: A document listing additional resources, tools, or links for further learning in data analysis.
-* **`IMBD.csv`**: The raw IMDb movie dataset in CSV (Comma Separated Values) format.
-* **`IMBD.xlsx`**: The raw IMDb movie dataset in Excel format.
-* **`IMDB.twb`**: A Tableau Workbook file containing the visualizations and dashboards created during or for the presentation. (Requires Tableau Desktop to open and view.)
+* **`I Heart Tech Event Notes.txt`**: This file contains preparation and explanation notes for the presentation.
+* **`I Heart Tech IMDb Data Analysis Resources.docx`**: A document listing additional resources, tools, and links for further learning in data analysis. This was shared with the class.
+* **`imdb_movies.xlsx`**: The raw IMDb movie dataset in Excel format. This is an export of the table we prepared and cleansed in our database.
+* **`IMDb Analysis - Excel Data Source.twb`**: The Tableau Workbook file containing the visualizations and dashboard created during and for the presentation. The version of this workbook points to the Excel data source instead of our database table to avoid the need for database access for the general public.
 
 ## Purpose
 
