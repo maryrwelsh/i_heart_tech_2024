@@ -6,7 +6,7 @@ In this interactive presentation, we’ll dive into IMDb movie data to uncover i
 
 
 Upon importing the data from the .csv file into our desired database (into object named i_heart_tech.imdb_movies), I did some manual data cleansing (already done to save time)
-
+(The data source in this repo's Tableau worksheet is an exported Excel file of this table so it can be viewed without needing database access)
 
 --DATA CLEANSING SQL
 --clean the genre text
